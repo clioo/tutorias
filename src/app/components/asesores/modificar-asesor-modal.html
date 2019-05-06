@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Datos del usuario</h1>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="selectRol">Rol</label>
+  </div>
+  <select (change)="cambiarPropiedad(selectRol.value)" #selectRol class="custom-select" id="selectRol">
+    <option value="asesor">Asesor</option>
+    <option value="alumno">Alumno</option>
+  </select>
+</div>

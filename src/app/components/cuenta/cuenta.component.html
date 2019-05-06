@@ -1,0 +1,32 @@
+<app-app-loading *ngIf="!profile"></app-app-loading>
+
+
+<div *ngIf="profile" class="container mt-5 justify-content-center">
+  <div class="profile-area">
+    <div class=" d-flex panel-body justify-content-center">
+      <img class="img-thumbnail" src="{{profile.picture}}" alt="avatar">
+      
+    </div>
+    <div class="row justify-content-center">
+        <div class="form-group col-xl-6 col-lg-6 col-md-6 ">
+            <label for="usuario">Usuario</label>
+            <h3 id="usuario" name="usuario">{{profile.nickname}}</h3>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="form-group col-xl-6 col-lg-6 col-md-6 ">
+            <label for="usuario">Nombre</label>
+            <h3 id="usuario" name="usuario">{{profile.name}}</h3>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="form-group col-xl-6 col-lg-6 col-md-6 ">
+            <label for="usuario">Apellido</label>
+            <input type="text" name="usuario" id="usuario"
+            class="form-control">
+        </div>
+    </div>
+   
+  </div>
+</div>
+

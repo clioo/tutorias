@@ -1,0 +1,19 @@
+<app-app-loading *ngIf="rolesCargados == false"></app-app-loading>
+
+
+<div *ngIf="rolesCargados == true" class="card-columns animated fadeIn">
+    <div *ngFor="let rol of roles" class="card">
+      <img class="card-img-top" [src]="rol.data.usuario | usuarioFoto:usuarios"
+        alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title justify-content-center d-flex">{{rol.data.usuario | usuario:usuarios}}</h5>
+        <div class="row justify-content-center" >
+          <span class="badge badge-primary">{{rol.data.rol}}</span>
+        </div>
+        <div class="justify-content-center">
+          <button class="btn btn-outline-primary btn-sm mr-2" (click)="modalVerTareas(rol.data.usuario,rol.id)"><i class="fas fa-tasks"></i> Ver tareas</button>
+          <button *ngIf="this.app.idUsuarioAdmin == this.app.profile.sub" (click)="modalAsignarTarea(rol.id,rol.data.usuario)" class="btn btn-primary btn-sm mt-1"><i class="fas fa-plus"></i> Asignar tarea</button>
+        </div>
+      </div>
+    </div>
+  </div>

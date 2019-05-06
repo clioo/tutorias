@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Agregar rol</h1>
+<mat-dialog-content class="mat-typography">
+    <div class="form-group">
+        <label for="nombreRol">Rol</label>
+        <input #nombreRol type="text" id="nombreRol" class="form-control">
+    </div>
+    
+        
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-danger mr-2" mat-dialog-close>Cancelar</button>
+  <button class="btn btn-primary" (click)="onNoClick(nombreRol.value)" [mat-dialog-close]="true" cdkFocusInitial>Agregar</button>
+</mat-dialog-actions>

@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Copia el link y envíalo al integrante de tu equipo</h1>
+<mat-dialog-content class="mat-typography">
+    <input id="cadena" #cadena type="text" readonly="true" class="form-control" [value]="'https://gestion-aabbb.firebaseapp.com/unirse/' +
+    data.idProyecto + '/' + data.idRol">
+    <br>
+    <label for="numero">Número de teléfono</label>
+    <input type="text" #numero id="numero" class="form-control">
+    <div class="justify-content-center d-flex mt-2">
+      <button type="button" (click)="chatear()" class="btn btn-success"><i class="fab fa-whatsapp"></i> </button>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

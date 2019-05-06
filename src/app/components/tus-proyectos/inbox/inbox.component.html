@@ -1,0 +1,39 @@
+<h3 class="animated fadeIn" *ngIf="this.app.proyectoEscogido  == '0'">Por favor únase o cree uno nuevo.</h3>
+<h3 *ngIf="this.app.proyectoEscogido != '0'" class="text-center"> <i class="fas fa-comment"></i> Inbox</h3>
+<hr>
+
+<div class="animated fadeIn container main-container">
+  <div class="row justify-content-center d-flex">
+      <div *ngIf="this.app.proyectoEscogido != '0'" class="chat-window">
+          <div class="app-mensajes" #appMensajes id="appMensajes">
+                <div *ngFor="let chat of _chatservice.chats" 
+                [ngClass]="{'text-right' : this.usuario.sub == chat.usuario}">
+                  <div class="justify-content-end">
+                      <span class="spanFecha">{{chat.fecha | date:'short'}}</span>
+                      
+                      <span class="badge"
+                      [ngClass]="{'badge-primary': this.usuario.sub == chat.usuario,
+                    'badge-dark': this.usuario.sub != chat.usuario}">{{chat.nombre}}</span>
+                  </div>
+                  <p>
+                    {{chat.mensaje}}
+                  </p>
+                </div>
+    
+              
+              </div>
+              <input class="mt-1 form-control block" type="text" name="mensaje" (keyup.enter)="enviarMensaje()" [(ngModel)]="mensaje" id=""
+              placeholder="Enviar mensaje">
+        </div>
+  </div>
+
+  <div *ngIf="this.app.proyectos">
+    <div class="row justify-content-center">
+      <button *ngIf="!this.app.proyectos" class="animated fadeIn btn btn-primary"><i class="fas fa-plus"></i> Crear un nuevo proyecto</button>
+    </div>
+  </div>
+
+</div>
+  
+
+
