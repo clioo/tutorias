@@ -1,0 +1,91 @@
+<app-app-loading *ngIf="guardado"></app-app-loading>
+
+<div class="container mt-5" *ngIf="!guardado">
+
+  <form (submit)="guardar()" [formGroup]="form" class="pt-3 needs-validation" novalidate action="" method="post">
+    <h2 class="text-center">Nuevo grupo</h2>
+    <hr>
+    <div class="form-group justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-8 col-lg-8">
+                <label for="nombre" class="label-default">*Nombre del grupo</label>
+                <input required class="form-control border-dark" type="text"
+                formControlName="nombre" name="nombre" id="nombre" #nombre>
+                <div class="form-control-feedback rojo" *ngIf="form.controls?.nombre?.errors?.required == true">
+                  Este campo es requerido
+                </div>
+              </div>
+        </div>
+    </div>
+
+    
+    <h3 class="text-center">Materias a impartir</h3>
+    <div class="row justify-content-center">
+        <table class="col-sm-12 col-md-8 col-lg-8 table table-bordered table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Dominada</th>
+                <th scope="col">Materia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let rol of roles;let i = index" >
+                <td>{{i}}</td>
+                <td>{{rol.nombre}}</td>
+              </tr> -->
+              <tr *ngFor="let materia of materias; let i = index;">
+                <td>{{i}}</td>
+                <td>
+                  <div class="form-check">
+                      <input (click)="materiaAgregada(i)" type="checkbox" class="form-check-input" [value]="i">
+                  </div>
+                </td>
+                <td>{{materia.nombre}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+
+
+
+      <div class="row justify-content-center">
+          <button type="button"  data-toggle="modal" data-target="#exampleModal" class="mr-2 mb-2 btn  btn-dark"><i class="fas fa-2x fa-plus-circle"></i></button>
+          <button type="submit" class="mb-2 btn btn-primary">
+            <i class="fas fa-2x fa-check"></i>
+          </button>
+      </div>
+  </form>
+
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Añadir materia</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              <div class="col-sm-12 col-md-8 col-lg-8">
+                <label for="titulo" class="label-default">*Materia</label>
+                <input [(ngModel)]="rol"  #idRol id="idRol" class="form-control border-dark" type="text">
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" *ngIf="rol"
+          (click)="agregarRol(idRol.value)" data-dismiss="modal"><i class="fas fa-plus"></i> Añadir</button>
+        </div>
+      </div>
+    </div>
+  </div>

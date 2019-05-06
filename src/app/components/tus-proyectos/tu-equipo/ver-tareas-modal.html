@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Tareas de {{data.idUsuario | usuario:data.usuarios}}</h1>
+
+    <mat-dialog-content class="mat-typography">
+           
+    <table  class="table table-striped table-dark animated fadeIn">
+        <thead>
+          <tr>
+            <th scope="col">Tarea</th>
+            <th scope="col">Fecha Inicio</th>
+            <th  scope="col">Fecha límite</th>
+            <th  scope="col">Estado</th>
+            <th scope="col">Link de entrega</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tarea of tareas">
+            <td>{{tarea.data.title}}</td>
+            <td>{{tarea.data.start | date:'short'}}</td>
+            <td>{{tarea.data.end | date:'short'}}</td>
+            <td>
+                    <div class="row justify-content-center" [ngSwitch]="tarea.data.estado">
+                            <span class="badge badge-success"
+                            *ngSwitchCase="'a'">Aceptado</span>
+                            <span class="badge badge-warning"
+                            *ngSwitchCase="'b'">En proceso</span>
+                            <span class="badge badge-danger"
+                            *ngSwitchCase="'c'">Sin empezar</span>
+                        </div>
+            </td>
+            <td><a *ngIf="tarea.data.entrega != ''" href="{{tarea.data.entrega}}">Entrega</a></td>
+            <td *ngIf="tarea.data.estado == 'b' && this.data.idUsuarioLoggeado == this.data.idUsuarioAdmin">
+              <button class="btn btn-sm btn-primary" (click)="aceptarEntregas(tarea.data.id)">Aceptar entrega</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button class="btn btn-danger mr-2" mat-dialog-close>Cancelar</button>
+      </mat-dialog-actions>

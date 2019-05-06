@@ -1,0 +1,42 @@
+
+<div class="container animated fadeIn">
+  <div *ngIf="chart">
+    <canvas #canvas id="canvas">{{ chart }}</canvas>
+  </div>
+
+  <table  class="table table-striped table-dark animated fadeIn">
+    <thead>
+      <tr>
+        <th scope="col">Tarea</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Fecha Inicio</th>
+        <th  scope="col">Fecha límite</th>
+        <th  scope="col">Estado</th>
+        <th scope="col">Link de entrega</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tarea of tareas">
+        <td>{{tarea.title}}</td>
+        <td>{{tarea.usuario | usuario:usuarios}}</td>
+        <td>{{tarea.start}}</td>
+        <td>{{tarea.end}}</td>
+        <td>
+          <div class="row justify-content-center" [ngSwitch]="tarea.estado">
+            <span class="badge badge-success"
+            *ngSwitchCase="'a'">Aceptado</span>
+            <span class="badge badge-warning"
+            *ngSwitchCase="'b'">En proceso</span>
+            <span class="badge badge-danger"
+            *ngSwitchCase="'c'">Sin empezar</span>
+        </div>
+        </td>
+        <td><a *ngIf="tarea.entrega != ''" href="{{tarea.entrega}}">Entrega</a></td>
+        <td *ngIf="tarea.estado == 'b' && this.app.profile.sub == this.app.idUsuarioAdmin">
+          <button (click)="aceptarEntregas(tarea.id, tarea.idRol)" class="btn btn-sm btn-primary" >Aceptar entrega</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,27 @@
+.main-container{
+    margin-top: 40px;
+    margin-bottom: 150px;
+  }
+  
+  .puntero{
+    cursor: pointer;
+  }
+  .spanFecha{
+    font-size: 9px;
+  }
+  
+  .chat-window{
+    padding: 10px;
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    border: 1px solid black;
+    border-radius: 20px;
+  }
+  
+  .app-mensajes{
+    overflow-y:scroll;
+    height:340px;
+    /*background:gray;*/
+    padding: 5px;
+  }

@@ -1,0 +1,17 @@
+<app-app-loading *ngIf="!usuarios"></app-app-loading>
+<div class="card-columns animated fadeIn">
+  <div *ngFor="let usuario of usuarios;" class="card">
+    <img class="card-img-top" [src]="usuario.data.picture"
+      alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title justify-content-center d-flex">{{usuario.data.name}}</h5>
+      <div class="row justify-content-center" >
+        <span class="badge badge-primary">{{usuario.data.rol}}</span>
+        <span *ngIf="usuario.data.name == 'administracion@uas.com'" class="badge badge-danger">Administrador</span>
+      </div>
+      <div *ngIf="usuario.data.name != 'administracion@uas.com'" class="justify-content-center d-flex">
+        <button mat-raised-buttonx (click)="openDialog(usuario.id)" class="btn btn-outline-primary btn-sm mr-2" ><i class="fas fa-edit"></i> Modificar</button>
+      </div>
+    </div>
+  </div>
+</div>

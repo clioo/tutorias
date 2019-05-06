@@ -1,0 +1,31 @@
+Vistas:
+    - Agente:
+        - Confirmar solicitudes.
+        - Contactar a usuario.
+        - Definir horarios de disponibilidad.
+        - Perfil de usuario.
+
+    - Usuario (Comprador):
+        - Solicitudes de citas.
+            - Registrar medio de contacto (número de teléfono, correo electrónico).
+        - Publicar casas.
+        - Perfil de usuario.
+    
+    - Administrador:
+        - Configuraciones globales.
+
+Página web:
+- Publicaciones de casas.
+- Búsqueda de casas.
+    - Por publicación.
+    - Google maps.
+- Chat.
+
+
+Futuro
+- Estimación de valor
+- Hipoteca (simulación)
+- Asesoramiento infonavit
+
+
+
