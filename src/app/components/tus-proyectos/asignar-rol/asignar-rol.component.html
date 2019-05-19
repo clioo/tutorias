@@ -5,31 +5,31 @@
   <form (ngSubmit)="onNoClick(forma,fechaInicio.value,fechaLimite.value)" #forma="ngForm">
     <mat-dialog-content class="mat-typography">
             <mat-form-field>
-              <input matInput placeholder="Titulo" #titulo ngModel name="titulo"
+              <input matInput placeholder="Clase" #titulo ngModel name="titulo"
               required type="text" id="titulo">
             </mat-form-field>
             <br>
             <mat-form-field>
-            <textarea matInput ngModel required placeholder="Descripción"
+            <textarea matInput ngModel required placeholder="Detalles de la clase"
             name="descripcion" id="descripcionTarea"  #descripcionTarea></textarea>
           </mat-form-field>
           <br>
             <mat-form-field>
                 <input matInput  required readonly name="start" [ngModel]="fechaInicio"
-                 [matDatepicker]="picker" placeholder="Fecha de inicio" #fechaInicio id="fechaInicio">
+                 [matDatepicker]="picker" placeholder="Clase desde" #fechaInicio id="fechaInicio">
                 <mat-datepicker-toggle disabled="false" matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker disabled="false" #picker></mat-datepicker>
               </mat-form-field>
               <br>
               <mat-form-field>
                     <input required readonly name="end" [ngModel]="fechaFinal"
-                    matInput [matDatepicker]="picker2" placeholder="Fecha límite" #fechaLimite id="fechaLimite">
+                    matInput [matDatepicker]="picker2" placeholder="Hasta" #fechaLimite id="fechaLimite">
                     <mat-datepicker-toggle matSuffix [for]="picker2" disabled="false"></mat-datepicker-toggle>
                     <mat-datepicker #picker2 disabled="false"></mat-datepicker>
                   </mat-form-field>
     </mat-dialog-content>
     <br>
-    <label id="example-radio-group-label">Materia que se abordará</label>
+    <label id="example-radio-group-label">Materia que se abordará *</label>
     <br>
         <mat-radio-group #materia id="materia" name="materia" required ngModel
           aria-labelledby="example-radio-group-label"

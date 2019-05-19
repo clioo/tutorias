@@ -45,7 +45,8 @@ export class AsignarRolComponent implements OnInit {
       }
       console.log(objeto)
       this._afs.asignarClase(this.app.proyectoEscogido,objeto).then(()=>{
-        alert('guardado')
+        alert('guardado');
+        forma.reset();   
       }).catch(err=>console.log(err));
     }
 
