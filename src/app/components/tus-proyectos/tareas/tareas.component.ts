@@ -40,7 +40,8 @@ export class TareasComponent implements OnInit {
                right: 'month,agendaWeek,agendaDay,listMonth'
              },
             eventClick: function(calEvent, jsEvent, view) {
-    
+              // console.log(calEvent);
+              // console.log(app.proyectoEscogido)
               const dialogRef = dialog.open(TareasModal, {
                 data: {
                   data:calEvent,
@@ -99,51 +100,51 @@ export class TareasModal {
   toDoList:any[] = [];
   constructor(public dialogRef: MatDialogRef<TareasModal>, @Inject(MAT_DIALOG_DATA) public data:any, public _afs:FirestoreFirebaseService) 
     {
-      _afs.obtenerTareaSingular(data.idProyecto,data.data.id).subscribe((data:any)=>{
-        this.estado = data.estado;
-      });
-      this.estado = data.data.estado;
-      _afs.obtenerToDoList(data.idProyecto,data.idRol,data.data.id).subscribe(data=>{
-        this.toDoList = data;
-        //console.log(this.toDoList);
-      })
+      // _afs.obtenerTareaSingular(data.idProyecto,data.data.id).subscribe((data:any)=>{
+      //   this.estado = data.estado;
+      // });
+      // this.estado = data.data.estado;
+      // _afs.obtenerToDoList(data.idProyecto,data.idRol,data.data.id).subscribe(data=>{
+      //   this.toDoList = data;
+      //   //console.log(this.toDoList);
+      // })
     }
 
-    cambarToDoList(id, estado){
-      this._afs.updateEstadoToDoList(this.data.idProyecto,this.data.idRol,this.data.data.id,id,{
-        completada:estado
-      }).then(()=>{
-        console.log('uasudsaudsaudsau')
-      }).catch(err=>{
-        console.log(err);
-      })
-    }
+    // cambarToDoList(id, estado){
+    //   this._afs.updateEstadoToDoList(this.data.idProyecto,this.data.idRol,this.data.data.id,id,{
+    //     completada:estado
+    //   }).then(()=>{
+    //     console.log('uasudsaudsaudsau')
+    //   }).catch(err=>{
+    //     console.log(err);
+    //   })
+    // }
 
 
-    subirArchivo(event){
-      let respuesta = this._afs.subirArchivo(event, this.data.idProyecto, this.data.idRol, this.data.data.id);
-      respuesta.porcentaje.subscribe((data:any)=>{
-        this.procentajeSubida = data;
-        if (data == '100') {
-         respuesta.linkDescarga.subscribe(data=>{
-           this._afs.updateEstadoDeTarea(this.data.idProyecto,this.data.idRol,this.data.data.id,{
-             entrega:data,
-             estado:'b'
-           });
-           this.estado = 'b';
-           this.dialogRef.close();
-         })
-        }
-      })
-    }
-    cambioStatus(){
-      this._afs.updateEstadoDeTarea(this.data.idProyecto,this.data.idRol,this.data.data.id,{
-        estado:this.selectEstado.nativeElement.value
-      }).then(()=>{
-        this.estado = this.selectEstado.nativeElement.value;
-        this.dialogRef.close();
-      }).catch(err=>console.log(err))
-    }
+    // subirArchivo(event){
+    //   let respuesta = this._afs.subirArchivo(event, this.data.idProyecto, this.data.idRol, this.data.data.id);
+    //   respuesta.porcentaje.subscribe((data:any)=>{
+    //     this.procentajeSubida = data;
+    //     if (data == '100') {
+    //      respuesta.linkDescarga.subscribe(data=>{
+    //        this._afs.updateEstadoDeTarea(this.data.idProyecto,this.data.idRol,this.data.data.id,{
+    //          entrega:data,
+    //          estado:'b'
+    //        });
+    //        this.estado = 'b';
+    //        this.dialogRef.close();
+    //      })
+    //     }
+    //   })
+    // }
+    // cambioStatus(){
+    //   this._afs.updateEstadoDeTarea(this.data.idProyecto,this.data.idRol,this.data.data.id,{
+    //     estado:this.selectEstado.nativeElement.value
+    //   }).then(()=>{
+    //     this.estado = this.selectEstado.nativeElement.value;
+    //     this.dialogRef.close();
+    //   }).catch(err=>console.log(err))
+    // }
 
   onNoClick(): void {
     this.dialogRef.close();

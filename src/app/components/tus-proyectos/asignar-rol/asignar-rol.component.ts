@@ -37,7 +37,7 @@ export class AsignarRolComponent implements OnInit {
         title:forma.controls.titulo.value,
         idGrupo: this.app.proyectoEscogido,
         descripcion:forma.controls.descripcion.value,
-        idMateria:this.materias[forma.controls.materia.value],
+        materia:this.materias[forma.controls.materia.value],
         estado:'c', //a = terminado, b=en curso, c= sin empezar
         entrega:'',
         start:start,

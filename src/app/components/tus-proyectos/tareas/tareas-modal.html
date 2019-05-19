@@ -11,19 +11,19 @@
     </div>
     <hr>
 
-    <div *ngIf="estado != 'a'">
+    <!-- <div *ngIf="estado != 'a'">
         <h3>Sube un archcivo de avances(solo zip y rar)</h3>
         <mat-progress-bar mode="determinate" [value]="procentajeSubida"></mat-progress-bar>
         <input class="form-control" type="file" (change)="subirArchivo($event)" accept=".zip,.rar" />
         <br>
         
-    </div>
-    <div *ngFor="let tarea of toDoList">
+    </div> -->
+    <!-- <div *ngFor="let tarea of toDoList">
         <input (click)="cambarToDoList(tarea.data.id, 't')" *ngIf="tarea.data.completada == 'f'" type="checkbox" [name]="tarea.data.id" [value]="tarea.data.id">
         <input (click)="cambarToDoList(tarea.data.id, 'f')" checked="true" *ngIf="tarea.data.completada == 't'" type="checkbox" [name]="tarea.data.id" [value]="tarea.data.id">
         {{tarea.data.tarea}} <br>
 
-    </div>
+    </div> -->
     <hr>
     <br>
     <strong>{{data.data.descripcion}}</strong>
