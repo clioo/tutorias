@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { FirestoreFirebaseService } from '../../../services/firestore-firebase.service';
 import { RealtimeFirebaseService } from '../../../services/realtime-firebase.service';
+import { Clase } from '../../../interface/clase.interface';
+
 import * as $ from 'jquery';
 
 export interface DialogData {
@@ -23,7 +25,31 @@ export class AsignarRolComponent implements OnInit {
   idUsuario:string;
   idAdmin:string;
   rolesCargados:boolean = false;
+  fechaInicio:string;
+  fechaFinal:string;
+  materias:any[] = [];
 
+  onNoClick(forma:any,start,end): void {
+    //FALTA ASIGAR LA CALENDERIZACIÓN DE LA CLASE CON EL GRUPO
+    if (forma.valid) {
+      console.log(this.fechaFinal)
+      let objeto:Clase = {
+        title:forma.controls.titulo.value,
+        idGrupo: this.app.proyectoEscogido,
+        descripcion:forma.controls.descripcion.value,
+        idMateria:this.materias[forma.controls.materia.value],
+        estado:'c', //a = terminado, b=en curso, c= sin empezar
+        entrega:'',
+        start:start,
+        end:end
+      }
+      console.log(objeto)
+      this._afs.asignarClase(this.app.proyectoEscogido,objeto).then(()=>{
+        alert('guardado')
+      }).catch(err=>console.log(err));
+    }
+
+  }
   expulsarUsuario(idRol:any){
     this._afs.updateDocumentoEnColeccionDeProyecto(
       this.app.proyectoEscogido, 'roles', idRol,
@@ -36,7 +62,9 @@ export class AsignarRolComponent implements OnInit {
   }
 
   constructor(private _fbService:RealtimeFirebaseService, public dialog: MatDialog,private _afs:FirestoreFirebaseService, @Inject(TusProyectosComponent) public app:TusProyectosComponent) {
-    
+    _afs.obtenerMaterias().subscribe(data=>{
+      this.materias = data;
+    })
     
 
     _afs.obtenerColeccionDeDocumento('proyectos',app.proyectoEscogido,'roles').pipe(
@@ -150,9 +178,9 @@ export class NuevaClaseaModal {
 
     onNoClick(forma:any,start,end): void {
       let tareasDeRol:any[] = [];
-      this._afs.obtenerTareasDeRol(this.data.idProyecto,this.data.idRol).subscribe(data=>{
-        tareasDeRol = data;
-      })
+      // this._afs.obtenerTareasDeRol(this.data.idProyecto,this.data.idRol).subscribe(data=>{
+      //   tareasDeRol = data;
+      // })
       
     if (forma.valid) {
       
@@ -168,27 +196,27 @@ export class NuevaClaseaModal {
         end:end,
         usuario: this.data.idUsuarioRol
       }
-      this._afs.asignarTarea(this.data.idProyecto,this.data.idRol,objeto).then((data:any)=>{
+      // this._afs.asignarTarea(this.data.idProyecto,this.data.idRol,objeto).then((data:any)=>{
         
-        for (let i = 0; i < this.toDoList.length; i++) {
-          const tarea = this.toDoList[i];
-          this._afs.agregarToDoList(this.data.idProyecto,this.data.idRol,data.id,{
-            tarea:tarea,
-            completada:'f'
-          }).then(()=>{
-            console.log('al millon')
-          }).catch(()=>{
-            console.log('ayyy no')
-          })
-        }
-        setTimeout(() => {
-          if (tareasDeRol.length > 1) {
-            alert('el usuario ya está haciendo una o más tareas, puede que afecte su desesmpeño');
-          }
-          this.dialogRef.close();  
-        }, 1000);
-        this._afs.agregarToDoList
-      }).catch(err=>console.log(err));
+      //   for (let i = 0; i < this.toDoList.length; i++) {
+      //     const tarea = this.toDoList[i];
+      //     this._afs.agregarToDoList(this.data.idProyecto,this.data.idRol,data.id,{
+      //       tarea:tarea,
+      //       completada:'f'
+      //     }).then(()=>{
+      //       console.log('al millon')
+      //     }).catch(()=>{
+      //       console.log('ayyy no')
+      //     })
+      //   }
+      //   setTimeout(() => {
+      //     if (tareasDeRol.length > 1) {
+      //       alert('el usuario ya está haciendo una o más tareas, puede que afecte su desesmpeño');
+      //     }
+      //     this.dialogRef.close();  
+      //   }, 1000);
+      //   this._afs.agregarToDoList
+      // }).catch(err=>console.log(err));
     }
 
   }

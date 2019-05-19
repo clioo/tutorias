@@ -49,7 +49,7 @@ export class EstadisticasComponent implements OnInit {
           
           for (let i = 0; i < this.roles.length; i++) {
             const element = this.roles[i];
-            _afirestore.obtenerTareasDeRol(app.proyectoEscogido,element.id).subscribe((data:any)=>{
+            _afirestore.obtenerClasesDeGrupoo(app.proyectoEscogido).subscribe((data:any)=>{
 
               for (let i = 0; i < data.length; i++) {
                 const element = data[i];

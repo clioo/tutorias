@@ -1,0 +1,6 @@
+.container{
+    -webkit-box-shadow: 4px 3px 25px 11px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 3px 25px 11px rgba(0,0,0,0.75);
+    box-shadow: 4px 3px 25px 11px rgba(0,0,0,0.75);
+    max-width: 350px;
+}

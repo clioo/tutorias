@@ -1,4 +1,54 @@
 <app-app-loading *ngIf="!rolesCargados"></app-app-loading>
 
+<div class="container justify-content-center d-flex mt-5">
+  
+  <form (ngSubmit)="onNoClick(forma,fechaInicio.value,fechaLimite.value)" #forma="ngForm">
+    <mat-dialog-content class="mat-typography">
+            <mat-form-field>
+              <input matInput placeholder="Titulo" #titulo ngModel name="titulo"
+              required type="text" id="titulo">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+            <textarea matInput ngModel required placeholder="Descripción"
+            name="descripcion" id="descripcionTarea"  #descripcionTarea></textarea>
+          </mat-form-field>
+          <br>
+            <mat-form-field>
+                <input matInput  required readonly name="start" [ngModel]="fechaInicio"
+                 [matDatepicker]="picker" placeholder="Fecha de inicio" #fechaInicio id="fechaInicio">
+                <mat-datepicker-toggle disabled="false" matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker disabled="false" #picker></mat-datepicker>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                    <input required readonly name="end" [ngModel]="fechaFinal"
+                    matInput [matDatepicker]="picker2" placeholder="Fecha límite" #fechaLimite id="fechaLimite">
+                    <mat-datepicker-toggle matSuffix [for]="picker2" disabled="false"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+                  </mat-form-field>
+    </mat-dialog-content>
+    <br>
+    <label id="example-radio-group-label">Pick your favorite season</label>
+    <br>
+        <mat-radio-group #materia id="materia" name="materia" required ngModel
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group">
+          <div *ngFor="let materia of materias; let i = index">
+            <mat-radio-button class="example-radio-button"  [value]="i">
+              {{materia.nombre}}
+            </mat-radio-button>
+            <br>
+          </div>
 
-<form action=""></form>
+        </mat-radio-group>
+      <div class="row mb-3 justify-content-center d-flex">
+        <button class="btn btn-danger mr-2" mat-dialog-close>Cancelar</button>
+        <button type="submit"  class="btn btn-primary">Agregar</button>
+      </div>
+
+
+        
+
+    </form>
+</div>

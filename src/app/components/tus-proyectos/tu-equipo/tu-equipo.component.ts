@@ -89,7 +89,7 @@ export class AsignarTareaModal {
 
     onNoClick(forma:any,start,end): void {
       let tareasDeRol:any[] = [];
-      this._afs.obtenerTareasDeRol(this.data.idProyecto,this.data.idRol).subscribe(data=>{
+      this._afs.obtenerClasesDeGrupoo(this.data.idProyecto).subscribe(data=>{
         tareasDeRol = data;
       })
       
@@ -107,27 +107,27 @@ export class AsignarTareaModal {
         end:end,
         usuario: this.data.idUsuarioRol
       }
-      this._afs.asignarTarea(this.data.idProyecto,this.data.idRol,objeto).then((data:any)=>{
+      // this._afs.asignarTarea(this.data.idProyecto,this.data.idRol,objeto).then((data:any)=>{
         
-        for (let i = 0; i < this.toDoList.length; i++) {
-          const tarea = this.toDoList[i];
-          this._afs.agregarToDoList(this.data.idProyecto,this.data.idRol,data.id,{
-            tarea:tarea,
-            completada:'f'
-          }).then(()=>{
-            console.log('al millon')
-          }).catch(()=>{
-            console.log('ayyy no')
-          })
-        }
-        setTimeout(() => {
-          if (tareasDeRol.length > 1) {
-            alert('el usuario ya está haciendo una o más tareas, puede que afecte su desesmpeño');
-          }
-          this.dialogRef.close();  
-        }, 1000);
-        this._afs.agregarToDoList
-      }).catch(err=>console.log(err));
+      //   for (let i = 0; i < this.toDoList.length; i++) {
+      //     const tarea = this.toDoList[i];
+      //     this._afs.agregarToDoList(this.data.idProyecto,this.data.idRol,data.id,{
+      //       tarea:tarea,
+      //       completada:'f'
+      //     }).then(()=>{
+      //       console.log('al millon')
+      //     }).catch(()=>{
+      //       console.log('ayyy no')
+      //     })
+      //   }
+      //   setTimeout(() => {
+      //     if (tareasDeRol.length > 1) {
+      //       alert('el usuario ya está haciendo una o más tareas, puede que afecte su desesmpeño');
+      //     }
+      //     this.dialogRef.close();  
+      //   }, 1000);
+      //   this._afs.agregarToDoList
+      // }).catch(err=>console.log(err));
     }
 
   }
@@ -150,7 +150,7 @@ export class VerTareasModal {
   tareas:any;
   constructor(public dialogRef: MatDialogRef<any>, private _afs:FirestoreFirebaseService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      _afs.obtenerTareasDeRol(data.idProyecto,data.idRol).subscribe(data=>{
+      _afs.obtenerClasesDeGrupoo(data.idProyecto).subscribe(data=>{
         this.tareas = data;
       })
     }

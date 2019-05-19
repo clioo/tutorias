@@ -47,7 +47,7 @@ import { FirestoreFirebaseService } from './services/firestore-firebase.service'
 //angular material
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { MatRadioModule } from '@angular/material/radio';
+import { MatRadioModule, MatRadioGroup } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';

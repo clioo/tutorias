@@ -22,12 +22,7 @@ export class TareasComponent implements OnInit {
   name: string;
   constructor(public dialog: MatDialog, @Inject(TusProyectosComponent) public app:TusProyectosComponent,
     _afs:FirestoreFirebaseService) {
-    _afs.obtenerRolUsuario(app.proyectoEscogido,app.profile.sub).subscribe(roles=>{
-      console.log('entra')
-      this.roles = roles;
-      for (let i = 0; i < roles.length; i++) {
-        const element = roles[i];
-        _afs.obtenerTareasDeRol(app.proyectoEscogido, element.id).subscribe(data=>{
+        _afs.obtenerClasesDeGrupoo(app.proyectoEscogido).subscribe(data=>{
           let tareas:any[] = [];
           for (let i = 0; i < data.length; i++) {
             const element = data[i];
@@ -49,8 +44,7 @@ export class TareasComponent implements OnInit {
               const dialogRef = dialog.open(TareasModal, {
                 data: {
                   data:calEvent,
-                  idProyecto:app.proyectoEscogido,
-                  idRol:roles[0].id
+                  idProyecto:app.proyectoEscogido
                 }
               });
           
@@ -62,9 +56,9 @@ export class TareasComponent implements OnInit {
             }
           });
         })  
-      }
+
       
-    });
+
    }
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
   calendarOptions: Options;
@@ -105,7 +99,7 @@ export class TareasModal {
   toDoList:any[] = [];
   constructor(public dialogRef: MatDialogRef<TareasModal>, @Inject(MAT_DIALOG_DATA) public data:any, public _afs:FirestoreFirebaseService) 
     {
-      _afs.obtenerTareaSingular(data.idProyecto,data.idRol,data.data.id).subscribe((data:any)=>{
+      _afs.obtenerTareaSingular(data.idProyecto,data.data.id).subscribe((data:any)=>{
         this.estado = data.estado;
       });
       this.estado = data.data.estado;
