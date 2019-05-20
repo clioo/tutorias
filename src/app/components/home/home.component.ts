@@ -17,6 +17,7 @@ export class HomeComponent {
   constructor(public _afs:FirestoreFirebaseService, _authService:AuthService) {
 
     _authService.getProfile((err,profile)=>{
+      console.log(profile)
       this.profile = profile;
       this.profileCargado = true;
 
@@ -30,13 +31,13 @@ export class HomeComponent {
             // su valor
             this.grupos[i].materiasDominadas = data;
           })
-          _afs.obtenerIntegrantesDeGrupo(this.grupos[i].id).subscribe((data:any)=>{
+          _afs.obtenerIntegrantesDeGrupo(this.grupos[i].id).subscribe((integrantes:any)=>{
             //integrantes no estaba inicializada pero existe en la interfaz, aquí inicializamos
             // su valor
-            this.grupos[i].integrantes = data;
+            this.grupos[i].integrantes = integrantes;
             //iteramos los integrantes para eliminar grupo si el usuario ya está unido a este
-            for (let x = 0; x < data.length; x++) {
-              if (this.profile.sub == data[i].usuario) {
+            for (let x = 0; x < integrantes.length; x++) {
+              if (this.profile.sub == integrantes[x].usuario) {
                 this.grupos.splice(i,1);
               }
               
