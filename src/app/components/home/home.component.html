@@ -1,8 +1,8 @@
-<app-app-loading *ngIf="!gruposCargados"></app-app-loading>
+<app-app-loading *ngIf="!gruposCargados && !profileCargado"></app-app-loading>
 
-<div class="container mt-2" *ngIf="gruposCargados">
+<div class="container mt-2" *ngIf="gruposCargados && profileCargado">
   <div class="row">
-      <div *ngFor="let grupo of grupos; let i = index;" 
+      <div *ngFor="let grupo of grupos; let i = index;"
       class="card text-white bg-dark mb-3 col-4 animated fadeIn slow mr-3" 
       style="max-width: 18rem;">
         <div class="card-header">
