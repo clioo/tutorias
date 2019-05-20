@@ -57,4 +57,14 @@ export class HomeComponent {
     });
   }
 
+  unirseGrupo(idGrupo:string){
+    let objeto = {
+      rol:'integrante',
+      usuario:this.profile.sub
+    }
+    this._afs.agregarIntegranteGrupo(idGrupo,objeto).then(()=>{
+      alert('Te haz unido con éxito.')
+    })
+  }
+
 }

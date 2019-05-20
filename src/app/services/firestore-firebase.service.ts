@@ -58,6 +58,11 @@ export class FirestoreFirebaseService {
     this.itemsCollection = this.afs.collection('grupos').doc(idGrupo).collection('integrantes');
     return this.itemsCollection.valueChanges();
   }
+  agregarIntegranteGrupo(idGrupo:string,objeto:Object){
+    this.itemsCollection = this.afs.collection('grupos').doc(idGrupo).collection('integrantes');
+    return this.itemsCollection.add(objeto);
+
+  }
   obtenerDatosValueChanges(coleccion:string){
     return this.afs.collection<any>(coleccion).valueChanges();
   }
