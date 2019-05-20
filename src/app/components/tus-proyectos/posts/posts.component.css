@@ -1,0 +1,49 @@
+.container{
+
+    max-width: 500px;
+}
+
+.card{
+    width: 100% !important;
+    max-width: 500px !important;
+}
+
+.derecha{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 1030;
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (max-width: 576px) {
+    .container{
+        height: 100%;
+        margin-top: 0% !important;
+        -webkit-box-shadow: -5px 3px 58px 8px transparent;
+        -moz-box-shadow: -5px 3px 58px 8px transparent;
+        box-shadow: -5px 3px 58px 8px transparent;
+    }
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (max-width: 768px) {
+
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (max-width: 992px) { 
+    .container{
+        height: 50%;
+    }
+
+}
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px) { 
+    .container{
+        height: 70%;
+    }
+ }

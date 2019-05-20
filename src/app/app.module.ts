@@ -23,7 +23,10 @@ import { CuentaComponent } from './components/cuenta/cuenta.component';
 import { ConfiguracionComponent } from './components/tus-proyectos/configuracion/configuracion.component';
 import { AsignarRolComponent, AsignarRolModal, AgregarRolModal } from './components/tus-proyectos/asignar-rol/asignar-rol.component';
 import { NuevaClaseaModal } from './components/tus-proyectos/asignar-rol/asignar-rol.component';
-
+import { EstadisticasComponent } from './components/tus-proyectos/estadisticas/estadisticas.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { AsesoresComponent, ModificarAsesorModal } from './components/asesores/asesores.component';
+import { PostsComponent } from './components/tus-proyectos/posts/posts.component';
 import { TuEquipoComponent, AsignarTareaModal, VerTareasModal } from './components/tus-proyectos/tu-equipo/tu-equipo.component';
 import { TareasComponent, TareasModal } from './components/tus-proyectos/tareas/tareas.component';
 import { InboxComponent } from './components/tus-proyectos/inbox/inbox.component';
@@ -67,9 +70,7 @@ import { HomeProyectosComponent } from './components/tus-proyectos/home-proyecto
 import { UsuarioPipe } from './pipes/usuario.pipe';
 import { UnirseProyectoLinkComponent } from './components/unirse-proyecto-link/unirse-proyecto-link.component';
 import { UsuarioFotoPipe } from './pipes/usuario-foto.pipe';
-import { EstadisticasComponent } from './components/tus-proyectos/estadisticas/estadisticas.component';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
-import { AsesoresComponent, ModificarAsesorModal } from './components/asesores/asesores.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,7 +102,8 @@ import { AsesoresComponent, ModificarAsesorModal } from './components/asesores/a
     UsuarioFotoPipe,
     EstadisticasComponent,
     UsuariosComponent,
-    AsesoresComponent
+    AsesoresComponent,
+    PostsComponent
   ],
   entryComponents:[AsignarTareaModal, 
     AgregarRolModal,
