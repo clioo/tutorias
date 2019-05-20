@@ -1,13 +1,27 @@
-<div class="container mt-2">
+<app-app-loading *ngIf="!gruposCargados"></app-app-loading>
 
-  <div class="card text-white bg-info mb-3 col-4" style="max-width: 18rem;">
-    <div class="card-header">Header</div>
-    <div class="card-body">
-      <h5 class="card-title">Info card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
+<div class="container mt-2" *ngIf="gruposCargados">
+  <div class="row">
+      <div *ngFor="let grupo of grupos; let i = index;" 
+      class="card text-white bg-dark mb-3 col-4 animated fadeIn slow mr-3" 
+      style="max-width: 18rem;">
+        <div class="card-header">
+          <h3>{{grupo.data.nombre}}</h3>
+
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Materias impartidas en este grupo</h5>
+          <div class="row justify-content-center" >
+              <span class="badge badge-info m-1" *ngFor="let materiaDominada of grupo.materiasDominadas"
+                >{{materiaDominada.nombre}}</span>
+            </div>
+            <div class="row justify-content-center">
+              <button class="btn btn-info">Unirte al grupo</button>
+            </div>
+        </div>
+      </div>    
   </div>
-
+  
 </div>
 
 

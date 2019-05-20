@@ -70,6 +70,7 @@ export class CrearProyectoComponent implements OnInit {
         this.afs.agregarIntegrante(objeto,data.id);
         for (let i = 0; i < this.materiasDominadas.length; i++) {
           let materia = this.materiasDominadas[i];
+          console.log(this.materias[materia])
           this.afs.agregarMaterias(this.materias[materia], data.id)
           
         }

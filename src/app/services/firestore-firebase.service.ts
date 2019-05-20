@@ -41,6 +41,19 @@ export class FirestoreFirebaseService {
       return this.itemsCollection.add(objeto);
     }
   //valuechanges obtiene los datos a la vista, bueno para mostrar en html
+  obtenerGrupos(){
+    this.itemsCollection = this.afs.collection('grupos');
+    return this.itemsCollection.snapshotChanges().pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, data };
+        })));
+  }
+  obtenerMateriasDominadasDeGrupo(idGrupo:string){
+    this.itemsCollection = this.afs.collection('grupos').doc(idGrupo).collection('materiasDominadas');
+    return this.itemsCollection.valueChanges();
+  }
   obtenerDatosValueChanges(coleccion:string){
     return this.afs.collection<any>(coleccion).valueChanges();
   }
@@ -123,7 +136,7 @@ export class FirestoreFirebaseService {
   agregarMaterias(nombreMateria:any,idGrupo:any){
     this.itemsCollection = this.afs.collection('grupos').doc(idGrupo).collection('materiasDominadas');
     return this.itemsCollection.add({
-      nombre:nombreMateria
+      nombre:nombreMateria.nombre
     });
   }
   agregarIntegrante(objeto,idGrupo){
