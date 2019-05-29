@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 
 export interface DialogData {
   idProyecto: string;
-  idRol: string;
+  idUsuario: string;
 }
 @Component({
   selector: 'app-asignar-rol',

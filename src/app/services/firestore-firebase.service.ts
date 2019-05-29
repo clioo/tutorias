@@ -61,7 +61,10 @@ export class FirestoreFirebaseService {
   agregarIntegranteGrupo(idGrupo:string,objeto:Object){
     this.itemsCollection = this.afs.collection('grupos').doc(idGrupo).collection('integrantes');
     return this.itemsCollection.add(objeto);
-
+  }
+  agregarPost(idGrupo:any,data:any){
+    this.itemsCollection = this.afs.collection('grupos').doc(idGrupo).collection('posts');
+    return this.itemsCollection.add(data)
   }
   obtenerDatosValueChanges(coleccion:string){
     return this.afs.collection<any>(coleccion).valueChanges();
@@ -78,9 +81,10 @@ export class FirestoreFirebaseService {
     this.itemsCollection = this.afs.collection(coleccion);
     return this.itemsCollection.doc(id).valueChanges();
   }
-  subirArchivo(event, idProyecto, idRol, idTarea){
+  subirArchivo(event, idProyecto, idUsuario){
     const file = event.target.files[0];
-    const filePath = idProyecto + '-' + idRol + '-' + idTarea + '.zip';
+    console.log(file);
+    const filePath = idProyecto + '-' + idUsuario + '.zip';
     const fileRef = this._afStorage.ref(filePath);
     const task = this._afStorage.upload(filePath, file);
     let uploadPercent: Observable<number> =  task.percentageChanges();

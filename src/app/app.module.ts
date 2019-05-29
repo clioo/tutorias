@@ -26,7 +26,7 @@ import { NuevaClaseaModal } from './components/tus-proyectos/asignar-rol/asignar
 import { EstadisticasComponent } from './components/tus-proyectos/estadisticas/estadisticas.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { AsesoresComponent, ModificarAsesorModal } from './components/asesores/asesores.component';
-import { PostsComponent } from './components/tus-proyectos/posts/posts.component';
+import { PostsComponent,NuevoPostModal } from './components/tus-proyectos/posts/posts.component';
 import { TuEquipoComponent, AsignarTareaModal, VerTareasModal } from './components/tus-proyectos/tu-equipo/tu-equipo.component';
 import { TareasComponent, TareasModal } from './components/tus-proyectos/tareas/tareas.component';
 import { InboxComponent } from './components/tus-proyectos/inbox/inbox.component';
@@ -96,6 +96,7 @@ import { UsuarioFotoPipe } from './pipes/usuario-foto.pipe';
     AgregarRolModal,
     NuevaClaseaModal,
     ModificarAsesorModal,
+    NuevoPostModal,
     HomeProyectosComponent,
     UsuarioPipe,
     UnirseProyectoLinkComponent,
@@ -111,7 +112,8 @@ import { UsuarioFotoPipe } from './pipes/usuario-foto.pipe';
     AsignarRolModal,
     TareasModal,
     VerTareasModal,
-    ModificarAsesorModal
+    ModificarAsesorModal,
+    NuevoPostModal
   ],
   imports: [
     BrowserModule,

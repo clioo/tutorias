@@ -1,14 +1,14 @@
-<h1 mat-dialog-title>{{data.data.title}}</h1>
+<h1 mat-dialog-title>Nuevo post</h1>
 <mat-dialog-content class="mat-typography">
     <hr>
-    <div class="row justify-content-center" [ngSwitch]="estado">
+    <!-- <div class="row justify-content-center" [ngSwitch]="estado">
         <span class="badge badge-success"
         *ngSwitchCase="'a'">Terminado</span>
         <span class="badge badge-warning"
         *ngSwitchCase="'b'">En proceso de ser aceptado</span>
         <span class="badge badge-danger"
         *ngSwitchCase="'c'">Sin empezar</span>
-    </div>
+    </div> -->
     <hr>
     <!-- <div class="dropdown">
         <select #selectEstado id="selectEstado" (change)="cambioStatus()" class="ml-3 custom-select">
@@ -18,14 +18,17 @@
             <option value="c">Sin empezar</option>
         </select>
     </div> -->
-    <div *ngIf="estado != 'a'">
-        <h3>Sube un archcivo de avances(solo zip y rar)</h3>
+    <div>
+        <mat-form-field style="width: 100%;">
+                <mat-label>Contenido</mat-label>
+                <textarea [(ngModel)]="contenido" matInput></textarea>
+                </mat-form-field>
+        <h3>Sube un archcivo apoyo(solo zip y rar)</h3>
         <mat-progress-bar mode="determinate" [value]="procentajeSubida"></mat-progress-bar>
-        <input class="form-control" type="file" accept=".zip,.rar" />
+        <input class="form-control" type="file" (change)="subirArchivo($event)" accept=".zip,.rar" />
         <br>
         
     </div>
-    <strong>{{data.data.descripcion}}</strong>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button class="btn btn-danger mr-2" mat-dialog-close>Cancelar</button>

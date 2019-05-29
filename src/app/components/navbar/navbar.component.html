@@ -25,7 +25,10 @@
               <li class="nav-item">
                   <a [routerLink]="['/cuenta']" routerLinkActive="active"  class="nav-link js-scroll-trigger"><i class="fas fa-user"></i>Cuenta</a>
                 </li>
-  
+              <li class="nav-item">
+                <a [routerLink]="['/lista']" routerLinkActive="active"  class="nav-link js-scroll-trigger"><i class="fa fa-list-ol"></i> Lista de clases</a>
+              </li>
+
 
           </ul>
           <button (click)="login()" *ngIf="!loggeado" class="btn btn-sm btn-success">Login</button>
