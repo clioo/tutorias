@@ -1,32 +1,16 @@
-<div class="container mt-5 mb-5">
+<app-app-loading *ngIf="!cargados"></app-app-loading>
+
+<div class="container mt-5 mb-5" *ngIf="cargados">
   <div class="row m-4 pt-2">
-      <div class="card text-white bg-info" style="max-width: 18rem;">
-          <div class="card-header">Header</div>
+
+      <div *ngFor="let post of posts;" class="card text-white bg-dark" style="max-width: 18rem;">
+          <div class="card-header">Usuario: <strong>{{post.data.usuario | usuario:usuarios}}</strong></div>
           <div class="card-body">
-            <h5 class="card-title">Info card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 class="card-title">{{post.data.contenido}}</h5>
+            <a [href]="post.data.link">Descargar recurso</a>
           </div>
         </div>
   </div>
-  <div class="row m-4 pt-2">
-      <div class="card text-white bg-info" style="max-width: 18rem;">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-            <h5 class="card-title">Info card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  </div>
-  <div class="row m-4 pt-2">
-      <div class="card text-white bg-info" style="max-width: 18rem;">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-            <h5 class="card-title">Info card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  </div>
-</div>
 
 <div class="derecha">
   <button (click)="newPost()" class="btn btn-dark">Nuevo aporte <i class="fas fa-plus-square"></i> </button>

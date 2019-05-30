@@ -66,6 +66,15 @@ export class FirestoreFirebaseService {
     this.itemsCollection = this.afs.collection('grupos').doc(idGrupo).collection('posts');
     return this.itemsCollection.add(data)
   }
+  obtenerPosts(idGrupo:any){
+    this.itemsCollection = this.afs.collection('grupos').doc(idGrupo).collection('posts');
+    return this.itemsCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return { id, data };
+      })));
+  }
   obtenerDatosValueChanges(coleccion:string){
     return this.afs.collection<any>(coleccion).valueChanges();
   }

@@ -8,18 +8,13 @@ export class UsuarioPipe implements PipeTransform {
 
 
   transform(value: any, usuarios:any[]): any {
-    if (value) {
+      console.log(usuarios);
         for (let i = 0; i < usuarios.length; i++) {
-          if (usuarios[i].identity.user_id == value) {
-            console.log(usuarios[i].data.name);
+          if (usuarios[i].data.user_id == value) {
             return usuarios[i].data.name; 
           }
         }
 
-       }else{
-      return 'Sin asignar';
-    }
-    
   }
 
 }

@@ -4,6 +4,7 @@ import { AsignarRolModal, DialogData } from '../asignar-rol/asignar-rol.componen
 import { TusProyectosComponent } from '../tus-proyectos.component';
 import { FirestoreFirebaseService } from '../../../services/firestore-firebase.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { RealtimeFirebaseService } from 'src/app/services/realtime-firebase.service';
 
 
 @Component({
@@ -13,12 +14,26 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class PostsComponent implements OnInit {
   profile:any;
+  cargados:Boolean = false;
+  public posts:any[] = [];
+  public usuarios:any[] = [];
   constructor(@Inject(TusProyectosComponent) public app:TusProyectosComponent, public dialog: MatDialog,
-  _authService:AuthService,private _afs:FirestoreFirebaseService) { 
+  _authService:AuthService,private _afs:FirestoreFirebaseService,private af:RealtimeFirebaseService) { 
     _authService.getProfile((err,profile)=>{
       this.profile = profile;
       console.log(profile);
     });
+    _afs.obtenerPosts(app.proyectoEscogido).subscribe((data)=>{
+      console.log(data);
+      this.posts = data;
+      af.getUsuarios().subscribe((usuarios:any)=>{
+        console.log(usuarios)
+        this.usuarios = usuarios;
+        this.cargados = true;
+
+      });
+    })
+ 
   }
 
   ngOnInit() {
@@ -44,9 +59,12 @@ export class NuevoPostModal {
   estado;
   procentajeSubida;
   contenido;
+
   constructor(
     public dialogRef: MatDialogRef<AsignarRolModal>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private _afs:FirestoreFirebaseService) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private _afs:FirestoreFirebaseService) {
+ 
+    }
 
   onNoClick(): void {
     this.dialogRef.close();
