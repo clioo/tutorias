@@ -2,7 +2,8 @@ export interface Grupos{
     id:string,
     data:DataGroup,
     materiasDominadas:any[],
-    integrantes:any[]
+    integrantes:any[],
+    unido:boolean
 }
 
 interface DataGroup{
