@@ -14,7 +14,7 @@ export class AuthService {
     clientID: 'bZXHPhP3yFHTYTVdk5xjPMfHOWh3mRR8',
     domain: 'clioo.auth0.com',
     responseType: 'token id_token',
-    redirectUri: 'http://localhost:4200/callback',
+    redirectUri: 'https://gestion-aabbb.firebaseapp.com/callback',
     scope: 'openid profile'
   });
   public userProfile: any;

@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, Inject, ElementRef  } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
-import { Options} from 'fullcalendar';
 import { FirestoreFirebaseService } from '../../../services/firestore-firebase.service';
-
+import {Sort} from '@angular/material/sort';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { TusProyectosComponent } from '../tus-proyectos.component';
 import * as $ from 'jquery';
@@ -62,7 +61,6 @@ export class TareasComponent implements OnInit {
 
    }
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  calendarOptions: Options;
   ngOnInit() {
 
    

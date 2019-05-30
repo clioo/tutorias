@@ -3,6 +3,7 @@ export interface Grupos{
     data:DataGroup,
     materiasDominadas:any[],
     integrantes:any[],
+    clases:any[],
     unido:boolean
 }
 

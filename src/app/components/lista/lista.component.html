@@ -1,3 +1,33 @@
-<p>
-  lista works!
-</p>
+<app-app-loading *ngIf="!gruposCargados"></app-app-loading>
+
+<div class="container" >
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Grupo</label>
+    </div>
+    <select *ngIf="gruposCargados" #selectGrupos (click)="cambiarEscogido(selectGrupos.value)" class="custom-select" id="inputGroupSelect01">
+      <option *ngFor="let grupo of grupos; let i = index;" [value]="i">{{grupo.data.nombre}}</option>
+    </select>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Clase</th>
+        <th scope="col">Materia</th>
+        <th scope="col">Desde</th>
+        <th scope="col">Hasta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let clase of clases; let i = index;">
+        <td>{{i}}</td>
+        <td>{{clase.data.title}}</td>
+        <td>{{clase.data.materia.nombre}}</td>
+        <td>{{clase.data.start}}</td>
+        <td>{{clase.data.end}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
