@@ -70,6 +70,7 @@ import { HomeProyectosComponent } from './components/tus-proyectos/home-proyecto
 import { UsuarioPipe } from './pipes/usuario.pipe';
 import { UnirseProyectoLinkComponent } from './components/unirse-proyecto-link/unirse-proyecto-link.component';
 import { UsuarioFotoPipe } from './pipes/usuario-foto.pipe';
+import { ListaComponent } from './components/lista/lista.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { UsuarioFotoPipe } from './pipes/usuario-foto.pipe';
     EstadisticasComponent,
     UsuariosComponent,
     AsesoresComponent,
-    PostsComponent
+    PostsComponent,
+    ListaComponent
   ],
   entryComponents:[AsignarTareaModal, 
     AgregarRolModal,

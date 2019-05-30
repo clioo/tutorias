@@ -12,6 +12,8 @@ import { CuentaComponent } from './components/cuenta/cuenta.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { UnirseProyectoLinkComponent } from './components/unirse-proyecto-link/unirse-proyecto-link.component';
 import { AsesoresComponent } from './components/asesores/asesores.component';
+import { ListaComponent } from './components/lista/lista.component';
+
 
 
 
@@ -30,6 +32,7 @@ const routes: Routes = [
   { path: 'cuenta', component: CuentaComponent, canActivate:[AuthguardService] },
   { path: 'callback', component: CallbackComponent},
   { path: 'protegida', component: ProtegidaComponent, canActivate:[AuthguardService] },
+  { path: 'lista', component: ListaComponent, canActivate:[AuthguardService] },
   { path: '**', component: HomeComponent },
 
   //{ path: 'path/:routeParam', component: MyComponent },
