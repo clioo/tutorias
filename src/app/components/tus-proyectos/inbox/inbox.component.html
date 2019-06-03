@@ -3,7 +3,30 @@
 <hr>
 
 <div class="animated fadeIn container main-container">
-  <div class="row justify-content-center d-flex">
+    <div class="container justify-content-center d-flex">
+        <mat-form-field>
+            <input matInput readonly name="start" [(ngModel)]="fechaInicio"
+             [matDatepicker]="picker" placeholder="Mensajes desde" id="fechaInicio">
+            <mat-datepicker-toggle disabled="false" matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker disabled="false" #picker></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+    <br>
+    <div class="container d-flex justify-content-center">
+        <mat-form-field>
+            <input readonly name="end" [(ngModel)]="fechaFinal"
+            matInput [matDatepicker]="picker2" placeholder="Hasta" id="fechaLimite">
+            <mat-datepicker-toggle matSuffix [for]="picker2" disabled="false"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="container d-flex justify-content-center mb-2">
+      <button (click)="filtrar()" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filtrar</button>
+    </div>
+  
+ 
+  <div *ngIf="!filtrado" class="row justify-content-center d-flex">
       <div *ngIf="this.app.proyectoEscogido != '0'" class="chat-window">
           <div class="app-mensajes" #appMensajes id="appMensajes">
                 <div *ngFor="let chat of _chatservice.chats" 
@@ -27,11 +50,28 @@
         </div>
   </div>
 
-  <div *ngIf="this.app.proyectos">
-    <div class="row justify-content-center">
-      <button *ngIf="!this.app.proyectos" class="animated fadeIn btn btn-primary"><i class="fas fa-plus"></i> Crear un nuevo proyecto</button>
-    </div>
+  <div *ngIf="filtrado" class="row justify-content-center d-flex">
+      <div class="chat-window">
+          <div class="app-mensajes" #appMensajesFiltrados id="appMensajesFiltrados">
+                <div *ngFor="let chat of this.mensajes" 
+                [ngClass]="{'text-right' : this.usuario.sub == chat.usuario}">
+                  <div class="justify-content-end">
+                      <span class="spanFecha">{{chat.fecha | date:'short'}}</span>
+                      
+                      <span class="badge"
+                      [ngClass]="{'badge-primary': this.usuario.sub == chat.usuario,
+                    'badge-dark': this.usuario.sub != chat.usuario}">{{chat.nombre}}</span>
+                  </div>
+                  <p>
+                    {{chat.mensaje}}
+                  </p>
+                </div>
+    
+              
+              </div>
+        </div>
   </div>
+
 
 </div>
   

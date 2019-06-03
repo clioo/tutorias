@@ -11,8 +11,12 @@ import { TusProyectosComponent } from '../tus-proyectos.component';
 })
 export class InboxComponent implements OnInit {
   @ViewChild('appMensajes') elemento:ElementRef;
+  filtrado:boolean = false;
   mensaje = "";
+  fechaInicio:any;
+  fechaFinal:any;
   usuario:any;
+  mensajes:any;
   enviarMensaje(){
       if(this.mensaje == ""){
         return; 
@@ -27,9 +31,12 @@ export class InboxComponent implements OnInit {
       }
 
   }  
-  constructor(@Inject(TusProyectosComponent) public app:TusProyectosComponent,public _chatservice:ChatService, public _authService:AuthService) {
+  constructor(@Inject(TusProyectosComponent) public app:TusProyectosComponent,
+  public _chatservice:ChatService, public _authService:AuthService) {
     if (this.app.proyectoEscogido != '0') {
-      this._chatservice.cargarMensajes(this.app.proyectoEscogido).subscribe((mensajes:any[])=>{{        this._chatservice.chats = [];
+      this._chatservice.cargarMensajes(this.app.proyectoEscogido).subscribe((mensajes:any[])=>{{
+        this._chatservice.chats = [];
+        this.mensajes = mensajes;
         for(let mensaje of mensajes){
           this._chatservice.chats.unshift(mensaje);
         }
@@ -41,7 +48,17 @@ export class InboxComponent implements OnInit {
     }
     
    }
-
+  filtrar(){
+    this.filtrado = true;
+    console.log(this.mensajes);
+    let mensajes:any;
+    mensajes = this.mensajes.filter((item: any) => {
+      return new Date(item.fecha).setHours(0,0,0,0) >= new Date(this.fechaInicio).setHours(0,0,0,0) &&
+             new Date(item.fecha).setHours(0,0,0,0) <= new Date(this.fechaFinal).setHours(0,0,0,0);
+    });
+    this.mensajes = mensajes;
+    console.log(mensajes);
+  }
   ngOnInit() {
     if (this._authService.userProfile) {
       this.usuario = this._authService.userProfile;

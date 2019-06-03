@@ -19,14 +19,14 @@
                  [matDatepicker]="picker" placeholder="Clase desde" #fechaInicio id="fechaInicio">
                 <mat-datepicker-toggle disabled="false" matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker disabled="false" #picker></mat-datepicker>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                    <input required readonly name="end" [ngModel]="fechaFinal"
-                    matInput [matDatepicker]="picker2" placeholder="Hasta" #fechaLimite id="fechaLimite">
-                    <mat-datepicker-toggle matSuffix [for]="picker2" disabled="false"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2 disabled="false"></mat-datepicker>
-                  </mat-form-field>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                  <input required readonly name="end" [ngModel]="fechaFinal"
+                  matInput [matDatepicker]="picker2" placeholder="Hasta" #fechaLimite id="fechaLimite">
+                  <mat-datepicker-toggle matSuffix [for]="picker2" disabled="false"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+            </mat-form-field>
     </mat-dialog-content>
     <br>
     <label id="example-radio-group-label">Materia que se abordará *</label>
