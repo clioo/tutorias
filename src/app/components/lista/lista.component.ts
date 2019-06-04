@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreFirebaseService } from '../../services/firestore-firebase.service';
 import { Grupos } from '../../interface/grupos.interface';
 import { AuthService } from '../../services/auth.service';
+import { RealtimeFirebaseService } from 'src/app/services/realtime-firebase.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -15,6 +18,12 @@ export class ListaComponent implements OnInit {
   profileCargado:boolean = false;
   grupoEscogido:any;
   clases:any[] = [];
+  //aquí entra código de otro componente
+  roles:any[] = [];
+  usuarios: Observable<any[]>;
+  rolUsuario:any;
+  rolesCargados:boolean = false;
+  yaEscogio:Boolean = false;
   ngOnInit() {
   }
   public cambiarEscogido(indice:any){
@@ -22,9 +31,31 @@ export class ListaComponent implements OnInit {
       console.log(data)
      this.grupoEscogido = this.grupos[indice];       
      this.clases = data;
+     this.yaEscogio = true;
+    })
+
+    this._afs.obtenerColeccionDeDocumento('grupos', this.grupoEscogido, 'integrantes').pipe(
+        map(actions => actions.map(a => 
+        {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, data };
+        }))).subscribe(data=>{
+        let roles:any[] = [];
+        this.roles = data;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].data.usuario != '') {
+            roles.push(data[i])
+          }
+          this.roles = roles;
+        }
+        setTimeout(() => {
+          this.rolesCargados = true;
+        }, 200);
     })
   }
-  constructor(private _afs:FirestoreFirebaseService, private  _authService:AuthService){
+  constructor(private _afs:FirestoreFirebaseService, private  _authService:AuthService,
+    private af:RealtimeFirebaseService){
     _authService.getProfile((err,profile)=>{
       this.profileCargado = true;
 
@@ -47,18 +78,14 @@ export class ListaComponent implements OnInit {
      
     
         }
-  
- 
-  
         setTimeout(() => {
           this.gruposCargados = true;
         }, 1000);
-   
       })
 
-
-
-
+      af.getUsuarios().subscribe((data:any)=>{
+        this.usuarios = data;
+      });
     });
   }
 
