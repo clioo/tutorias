@@ -27,7 +27,7 @@
     "angular-calendar-scheduler": "^1.0.6",
     "angular-clipboard": "^1.6.2",
     "angular-stats": "^1.2.2",
-    "auth0-js": "^9.7.3",
+    "auth0-js": "^9.13.2",
     "chart.js": "^2.7.3",
     "core-js": "^2.5.4",
     "firebase": "^5.5.7",
